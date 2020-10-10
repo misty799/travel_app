@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:travelapp/HomePages/newTrips/credentials.dart';
 import 'package:travelapp/HomePages/newTrips/dateView.dart';
 import 'package:travelapp/models/place.dart';
 import 'package:travelapp/models/trip.dart';
@@ -37,21 +36,7 @@ class NewTripLocationState extends State<NewTripLocation>{
       return;
     }
     
-    String baseURL = 'https://maps.googleapis.com/maps/api/place/autocomplete/json';
-    String type = '(regions)';
-
-    String request = '$baseURL?input=$input&key=$PLACES_API_KEY&type=$type';
-    Response response = await Dio().get(request);
-    print(response);
-    final predictions = response.data['predictions'];
-
-      List<SearchTrip> _displayResults = [];
-
-    for (var i=0; i < predictions.length; i++) {
-      String name = predictions[i]['description'];
-      double averageBudget = 200.0;
-      _displayResults.add(SearchTrip(name, averageBudget));
-    }
+ 
 
       setState(() {
         _heading='results';
